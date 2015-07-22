@@ -1,4 +1,4 @@
-# Adafruit Raspberry Pi Finder
+# CalmEQ Raspberry Pi Finder and Setup Program
 
 The Pi Finder is intended to work with the [latest version of Raspbian][1],
 so please make sure you have installed Raspbian on your SD card before continuing.
@@ -8,34 +8,16 @@ problem is, you dont have an extra HDMI monitor and keyboard.  So how can you
 find out the IP network address? PI FINDER TO THE RESCUE!  Run this
 cross-platform application to locate your Raspberry Pi's IP address.
 
-But it doesn't end there... Order now and you'll also get the bootstrapping
-functionality! That's right, the Pi Finder will ssh into the fresh new Pi,
-update it, set up the wifi SSID and password, set a custom hostname of your
-choice, and install Occidentalis, a collection of really handy
-software for you:
+This version is forked from Adafruit's Pi Finder application.
 
-  * apt-get update (grabs information on the newest versions of packages)
-  * apt-get installs: **avahi-daemon, netatalk** - so you can connect to
-    raspberrypi.local instead of needing to know the IP address in the future
-  * apt-get installs: **node, tmux, vim, git** - handy development tools! 
-  * apt-get installs: **i2c-tools, python-smbus** - tools for letting your
-    connect to common i2c sensors
-  * apt-get installs & configures: **samba, samba-common-bin** - file sharing
-    so you can easily back up your Pi's file or transfer files to it
+After the device is located, an Ansible Playbook is executed to configure the device.
+It is recommended that this playbook change the default user password, and perform
+the key handoffs to allow the machine to safely register on the CalmEQ devices website,
+and allow further remote configuration through ansible.
 
-And, as a bonus, a handy tool we wrote called **occi** - which will let you
-change the hostname and wifi details by plugging the SD card into any computer
-and editing the `/boot/occidentalis.txt` file (see below).
-
-Looking for code? Occidentalis is maintained [as its own GitHub
-repository][occidentalis].
-
-**Note:** This project shares a coincidental name with the Pi Finder by Ivan X, a lovely Mac OS X utility that also helps locate a headless Raspberry Pi on your local network. Please visit [http://ivanx.com/raspberrypi/](http://ivanx.com/raspberrypi/) for the other Pi Finder and other fine Raspberry Pi tutorials and projects!
+The playbook should also configure the wifi password.
 
 ## Finding the Pi & Starting the Bootstrap
-
-**Please remember that this is beta software, and _may be glitchy_. We'd
-love your feedback, but use at your own risk!**
 
 We have created a utility that will find a Raspberry Pi connected to your
 local network and start the bootstrap process. The utility requires you to
@@ -95,6 +77,6 @@ sudo occi
 Looking for code? occi is maintained [in its own GitHub repository][occi].
 
 [1]: http://www.raspberrypi.org/downloads/
-[2]: https://github.com/adafruit/Adafruit-Pi-Finder/releases/latest
+[2]: https://github.com/CalmEQ/CalmEQ-Pi-Setup/releases/latest
 [occidentalis]: https://github.com/adafruit/Adafruit-Occidentalis
 [occi]: https://github.com/adafruit/Adafruit-Occi
