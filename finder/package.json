@@ -1,21 +1,26 @@
 {
-  "name": "adafruit-pi-finder",
+  "name": "calmeq-pi-setup",
   "version": "2.2.0",
-  "description": "An atom-shell based utility for finding Raspberry Pis on your local network",
+  "description": "An atom-shell based utility for finding and setting up Raspberry Pis on your local network",
   "main": "main.js",
   "repository": {
     "type": "git",
-    "url": "https://github.com/adafruit/Adafruit-Pi-Finder"
+    "url": "https://github.com/calmeq/Calmeq-Pi-Setup"
   },
-  "author": "Todd Treece <todd@uniontownlabs.org>",
+  "author": "Jay Dermody <jay@askme.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/adafruit/Adafruit-Pi-Finder/issues"
+    "url": "https://github.com/calmeq/Calmeq-Pi-Setup/issues"
   },
-  "homepage": "https://github.com/adafruit/Adafruit-Pi-Finder",
+  "homepage": "https://github.com/calmeq/Calmeq-Pi-Setup",
   "dependencies": {
     "async": "^0.9.0",
     "ip": "^0.3.2",
+    "ssh2": "^0.3.6"
+  },
+  "devDependencies": {
+    "electron-prebuilt": "^0.30.2",
+    "electron-rebuild": "^0.2.5",
     "ssh2": "^0.3.6"
   }
 }
