@@ -7,6 +7,8 @@ var SSH = require('ssh2'),
 /**** ssh is an event emitter ****/
 util.inherits(ssh, events.EventEmitter);
 
+console.log('info', 'Hello logs!');
+
 /**** Finder prototype ****/
 var proto = ssh.prototype;
 
@@ -44,7 +46,10 @@ proto.password = 'raspberry';
 proto.host = '10.0.1.1';
 proto.port = 22;
 proto.type = 'shell';
-proto.install_command = 'curl -SLs https://apt.adafruit.com/install | sudo bash';
+//proto.install_command = 'curl -SLs https://apt.adafruit.com/install | sudo bash';
+//proto.install_command = 'sudo bash -c "apt-get update && sudo apt-get install -y python-software-properties && sudo apt-add-repository -y ppa:ansible/ansible && apt-get update && apt-get install -y ansible && ansible-pull -U git:/github.com/CalmEQ/calmeq-mypi.git"'
+//proto.install_command = 'sudo bash -c "apt-get update && sudo apt-get install -y python-setuptools && easy_install pip && pip install ansible && ansible-pull -U git:/github.com/CalmEQ/calmeq-mypi.git"'
+proto.install_command = fs.readFileSync('./runit.sh').toString()
 proto.pi_config = {};
 
 proto.handleError = function(err) {
@@ -197,6 +202,7 @@ proto.bootstrap = function() {
       term: 'xterm-color'
     }
   };
+  console.log('Sending build command: ' + this.buildCommand())
 
   this.ssh.exec(this.buildCommand(), opts, function(err, stream) {
 
