@@ -49,7 +49,8 @@ proto.type = 'shell';
 //proto.install_command = 'curl -SLs https://apt.adafruit.com/install | sudo bash';
 //proto.install_command = 'sudo bash -c "apt-get update && sudo apt-get install -y python-software-properties && sudo apt-add-repository -y ppa:ansible/ansible && apt-get update && apt-get install -y ansible && ansible-pull -U git:/github.com/CalmEQ/calmeq-mypi.git"'
 //proto.install_command = 'sudo bash -c "apt-get update && sudo apt-get install -y python-setuptools && easy_install pip && pip install ansible && ansible-pull -U git:/github.com/CalmEQ/calmeq-mypi.git"'
-proto.install_command = fs.readFileSync('./runit.sh').toString()
+//proto.install_command = fs.readFileSync('./runit.sh').toString()
+proto.install_command = 'git clone https://github.com/CalmEQ/calmeq-mypi.git; sudo bash calmeq-mypi/mypi-init.sh'
 proto.pi_config = {};
 
 proto.handleError = function(err) {

@@ -8,11 +8,17 @@ var app = require('app'),
 
     // Keep a global reference of the window object, if you don't, the window will
     // be closed automatically when the JavaScript object is GCed.
-    //var mainWindow = null;
 
+app.on('window-all-closed', function() {
+  // On OS X it is common for applications and their menu bar
+  // to stay active until the user quits explicitly with Cmd + Q
+  if (process.platform != 'darwin') {
+    app.quit();
+  }
+});
 
-exports = module.exports = function(app) {
-
+//exports = module.exports = function(app) {
+app.on('ready', function() {
   main = new BrowserWindow({
     width: 300,
     height: 380,
@@ -30,6 +36,9 @@ exports = module.exports = function(app) {
 
   main.loadUrl('file://' + __dirname + '/ui/main.html');
   terminal.loadUrl('file://' + __dirname + '/ui/terminal.html');
+
+  // Open the devtools.
+  //main.openDevTools();
 
   main.on('closed', function() {
 
@@ -104,7 +113,7 @@ exports = module.exports = function(app) {
 
   });
 
-}
+});
 
 function ssh_connect(config) {
 
